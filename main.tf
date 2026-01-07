@@ -30,6 +30,7 @@ resource "aws_iam_role" "default" {
   count              = module.this.enabled ? 1 : 0
   name               = module.codepipeline_assume_role_label.id
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
+  permissions_boundary = var.iam_permissions_boundary
 }
 
 data "aws_iam_policy_document" "assume_role" {
@@ -236,6 +237,7 @@ module "codebuild" {
   secondary_artifact_encryption_enabled = var.secondary_artifact_encryption_enabled
   vpc_config                            = var.codebuild_vpc_config
   cache_bucket_suffix_enabled           = var.cache_bucket_suffix_enabled
+  iam_permissions_boundary              = var.iam_permissions_boundary
 
   context = module.this.context
 }

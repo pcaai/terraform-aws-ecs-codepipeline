@@ -216,3 +216,9 @@ variable "codebuild_extra_policy_arns" {
   default     = []
   description = "List of ARNs of extra policies to attach to the CodeBuild role"
 }
+
+variable "iam_permissions_boundary" {
+  type        = string
+  default     = null
+  description = "ARN of the policy to set as the permissions boundary on IAM roles created by this module (and passed through to child modules, e.g., CodeBuild)."
+}
