@@ -1,5 +1,16 @@
 locals {
-  codepipeline_resource = try(element(concat(aws_codepipeline.default.*, aws_codepipeline.bitbucket.*), 0), {})
+  codepipeline_resource = try(
+    element(
+      concat(
+        aws_codepipeline.default.*,
+        aws_codepipeline.default_unmanaged.*,
+        aws_codepipeline.bitbucket.*,
+        aws_codepipeline.bitbucket_unmanaged.*
+      ),
+      0
+    ),
+    {}
+  )
 }
 
 output "badge_url" {

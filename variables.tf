@@ -222,3 +222,9 @@ variable "iam_permissions_boundary" {
   default     = null
   description = "ARN of the policy to set as the permissions boundary on IAM roles created by this module (and passed through to child modules, e.g., CodeBuild)."
 }
+
+variable "codepipeline_unmanaged" {
+  type        = bool
+  default     = false
+  description = "When true, create CodePipeline with lifecycle ignore_changes = all so Terraform will not update it after creation. Use this to manage the pipeline outside Terraform after initial creation."
+}
